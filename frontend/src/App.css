@@ -46,10 +46,6 @@
   height: 100% !important;
 }
 
-
-
-
- 
 .user {
   display: flex;
   cursor: pointer;
@@ -80,7 +76,7 @@
 }
 
 .chatBox {
-  height: 100vh;
+  height: calc(100vh - 43px);
   padding: 4rem 0;
   overflow-y: scroll;
   background: #efe7dd url("https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg") repeat;;
@@ -148,9 +144,13 @@
 }
 
 .chatMessageInput {
-  position: absolute;
-  bottom: 2px;
   width: 100%;
+}
+
+@media screen and (768px <= width <= 890px) {
+  .sidebar{
+    padding: 2rem 1rem;
+  }
 }
 
 @media screen and (425px <= width <= 768px) {

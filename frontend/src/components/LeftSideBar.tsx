@@ -6,7 +6,7 @@ import { UserDrawer } from "./userDrawer";
 import { NewChatDrawer } from "./NewChatDrawer";
 
 function LeftSideBar() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
 
   return (
     <Navbar className="sidebar">

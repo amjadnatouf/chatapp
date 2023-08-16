@@ -1,6 +1,7 @@
 import { GlobalState } from "little-state-machine";
+import { Chat, Chats } from "../types/types";
 
-export const setActiveChat = (state: GlobalState, payload: GlobalState) => {
+export const setActiveChat = (state: GlobalState, payload: Chat) => {
   return {
     ...state,
     activeChat: {
@@ -9,16 +10,16 @@ export const setActiveChat = (state: GlobalState, payload: GlobalState) => {
   };
 };
 
-export const setChats = (state: GlobalState, payload: GlobalState) => {
+export const setChats = (state: GlobalState, payload: Chats) => {
   return {
     ...state,
     chats: payload,
   };
 };
 
-export const setActiveUser = (state: GlobalState, payload: GlobalState) => {
-  return {
-    ...state,
-    isloggedIn: payload,
-  };
-};
+declare module "little-state-machine" {
+  interface GlobalState {
+    activeChat?: Chat | undefined;
+    chats: Chats;
+  }
+}

@@ -7,13 +7,14 @@ import {
   Button,
   Title,
   Text,
-  rem
+  rem,
 } from "@mantine/core";
 import { Avatar } from "@mui/material";
 import { IconLock } from "@tabler/icons-react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { axiosInstance } from "../util/apiCall";
 import { Link } from "react-router-dom";
+import { ILoginRes } from "../types/types";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -54,12 +55,20 @@ export function Login() {
   const { classes } = useStyles();
   const { handleSubmit, register } = useForm();
 
-  const onSubmit = async (values) => {
-    const res = await axiosInstance("/api/users/login", "POST", values);
-    if (res) {
-      localStorage.setItem("token", res.data.token);
-      window.location.replace("/");
-      return;
+  const onSubmit = async (values: FieldValues) => {
+    try {
+      const res = await axiosInstance<FieldValues, ILoginRes>(
+        "/api/users/login",
+        "POST",
+        values
+      );
+
+      if (res.data?.token) {
+        localStorage.setItem("token", res.data.token);
+        window.location.replace("/");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
     }
   };
 

@@ -1,25 +1,17 @@
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../util/apiCall";
 import { checkAuth } from "../util/auth";
-
-interface UserProps {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password?: string | null;
-}
+import { User } from "../types/types";
 
 interface GetUserResponse {
   data: {
-    user: UserProps;
+    user: User;
   };
 }
 
-export const useProfile = (
-  friendId?: string
-): { user: UserProps | undefined; isLoading: boolean } => {
+export const useProfile = (friendId?: string) => {
   const { id } = checkAuth();
-  const [user, setUser] = useState<UserProps | undefined>(undefined);
+  const [user, setUser] = useState<User | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {

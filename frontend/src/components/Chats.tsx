@@ -14,7 +14,7 @@ import {
 import { IconArrowLeft, IconPhoneCall, IconSend } from "@tabler/icons-react";
 import { setActiveChat } from "../util/state";
 
-const Chats = () => {
+const Chats: React.FC = () => {
   const { user } = useProfile();
   const {
     messages,
@@ -90,4 +90,3 @@ const Chats = () => {
 };
 
 export default Chats;
-// color="#0f4555"

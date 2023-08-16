@@ -11,17 +11,22 @@ import {
   createStyles,
   Avatar,
 } from "@mantine/core";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../util/apiCall";
+import { ILoginRes } from "../types/types";
 
 export function Register() {
   const { classes } = useStyles();
   const { handleSubmit, register } = useForm();
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: FieldValues) => {
     try {
-      const res = await axiosInstance("/api/users/register", "POST", values);
+      const res = await axiosInstance<FieldValues, ILoginRes>(
+        "/api/users/register",
+        "POST",
+        values
+      );
       if (res.status === 201) {
         localStorage.setItem("token", res.data?.token);
         window.location.replace("/");

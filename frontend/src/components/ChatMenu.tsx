@@ -3,23 +3,14 @@ import Person from "../util/Person";
 import { useChat } from "../hooks/useChat";
 import { Divider, Input } from "@mantine/core";
 
-interface ChatProps {
-  _id: string;
-  members: string[];
+interface ChatMenuProps {
+  show: boolean;
 }
 
-interface UserProps {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password?: string | null;
-}
-
-const ChatMenu = ({ show }) => {
+const ChatMenu: React.FC<ChatMenuProps> = ({ show }) => {
   const { user, isLoading } = useProfile();
   const { chats } = useChat();
-  
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -31,9 +22,9 @@ const ChatMenu = ({ show }) => {
         placeholder="Search for friends"
         className="chatMenuInput"
       />
-      {chats?.map((chat: ChatProps) => (
-        <div key={chat._id}>
-          <Person key={chat._id} chat={chat} currentUser={user as UserProps} />
+      {chats?.map((chat) => (
+        <div key={chat?._id}>
+          <Person chat={chat} currentUser={user} />
           <Divider />
         </div>
       ))}

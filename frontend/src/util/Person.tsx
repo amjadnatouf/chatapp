@@ -2,23 +2,11 @@ import { useStateMachine } from "little-state-machine";
 import { setActiveChat } from "./state";
 import { useProfile } from "../hooks/useProfile";
 import { Avatar, Indicator } from "@mantine/core";
-
-interface ChatProps {
-  _id: string;
-  members: string[];
-}
-
-interface UserProps {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password?: string | null;
-}
+import { Chat, User } from "../types/types";
 
 interface PersonProps {
-  chat: ChatProps | undefined;
-  currentUser?: UserProps | undefined;
+  chat: Chat | undefined;
+  currentUser?: User | undefined;
 }
 
 const Person: React.FC<PersonProps> = ({ chat, currentUser }) => {
@@ -41,7 +29,7 @@ const Person: React.FC<PersonProps> = ({ chat, currentUser }) => {
         size={16}
         offset={7}
         position="bottom-end"
-        color={true ? "green" : "#ccc"}
+        color={user?._id ? "green" : "#ccc"}
         withBorder
       >
         <Avatar size="md" radius="xl" src="/noAvatar.png" />

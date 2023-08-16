@@ -1,4 +1,3 @@
-import { useDisclosure } from "@mantine/hooks";
 import {
   Drawer,
   Group,
@@ -10,13 +9,15 @@ import {
   Divider,
 } from "@mantine/core";
 import { IconArrowRight, IconEdit } from "@tabler/icons-react";
-import { useChat } from "../hooks/useChat";
 import { useProfile } from "../hooks/useProfile";
 import Person from "../util/Person";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useStateMachine } from "little-state-machine";
-import { setChats, setActiveChat } from "../util/state";
 import { axiosInstance } from "../util/apiCall";
+import { Chat } from "../types/types";
+import { setActiveChat, setChats } from "../util/state";
+import { useDisclosure } from "@mantine/hooks";
+import { useChat } from "../hooks/useChat";
 
 export const NewChatDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -26,17 +27,20 @@ export const NewChatDrawer = () => {
   const { register, handleSubmit, resetField } = useForm();
   const { state, actions } = useStateMachine({ setChats, setActiveChat });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: FieldValues) => {
     const newChatMembers = {
       senderId: user?._id,
       receiverEmail: values.newChatEmail,
     };
 
-    const res = await axiosInstance("/api/chat/", "POST", newChatMembers);
+    const res = await axiosInstance<FieldValues, Chat>(
+      "/api/chat/",
+      "POST",
+      newChatMembers
+    );
 
     if (res.status === 201) {
-      console.log(res.data.message);
-      actions.setActiveChat(res.data.chat);
+      actions.setActiveChat(res.data);
     }
 
     if (res.status === 200) {
@@ -52,9 +56,7 @@ export const NewChatDrawer = () => {
     <div>
       <Drawer opened={opened} onClose={close} position="left" zIndex={1000}>
         <Menu>
-          <Title component="h3" align="center">
-            New Chat
-          </Title>
+          <Title align="center">New Chat</Title>
           <Menu.Item>
             <TextInput
               size="md"
