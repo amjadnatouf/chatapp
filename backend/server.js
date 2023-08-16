@@ -3,7 +3,7 @@ const app = require("./app");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8800;
 const mongoURI = process.env.MONGO_URI;
 const serverURI = "http://localhost:" + PORT;
 
