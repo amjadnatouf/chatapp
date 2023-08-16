@@ -105,7 +105,7 @@ export function Register() {
   );
 }
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   iconUser: {
     margin: ".5rem auto 0",
     border: "1px solid #0f4555",

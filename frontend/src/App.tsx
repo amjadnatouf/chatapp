@@ -4,11 +4,9 @@ import { checkAuth } from "./util/auth";
 import { Login } from "./views/Login";
 import Home from "./views/Home";
 import "./App.css";
-import { createStore } from "little-state-machine";
 
 const App: React.FC = () => {
   const { isAuthenticated } = checkAuth();
-  createStore({});
 
   return (
     <Routes>
