@@ -1,0 +1,176 @@
+:root {
+  --clr-main-bg: #d9d9e6;
+  --clr-primary: #0f4555;
+  --clr-chat-bg: #f0f0f0;
+  --clr-border: #d3d3d3;
+  --border-radius: 1rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.homeContainer {
+  display: flex;
+}
+
+.sidebar {
+  padding: 2rem;
+  background: #f7fafc;
+  flex: 2.5;
+}
+
+.NewChat {
+  margin: 0 auto;
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.profile {
+  border: 3px solid #ccc;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 1px;
+}
+
+.profileImg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+
+
+ 
+.user {
+  display: flex;
+  cursor: pointer;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.user > p {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.user > img {
+  width: 25px;
+  border-radius: 50%;
+}
+
+.empty-chat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 5.3;
+}
+
+.chats {
+  background: #eee;
+  flex: 5.3;
+}
+
+.chatBox {
+  height: 100vh;
+  padding: 4rem 0;
+  overflow-y: scroll;
+  background: #efe7dd url("https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg") repeat;;
+}
+
+.chatBox::-webkit-scrollbar{
+  width: 3px;
+}
+.chatBox::-webkit-scrollbar-thumb{
+  background:var(--clr-primary) ;
+  border-radius: 1rem;
+
+}
+.message {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+  margin: 1.5rem .5rem;
+}
+
+.avatarContainer {
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.createdAt {
+  position: absolute;
+  font-size: 10px;
+  color: #00000097;
+  bottom: -20px;
+  min-width: 100px;
+}
+
+.left{
+  left: 0;
+  text-align: left;
+}
+
+.right {
+  right: 0;
+  text-align: end;
+}
+
+ .right-message,
+.left-message {
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  max-width: 240px;
+  background-color: #fff;
+  color: #000;
+  word-wrap: break-word;
+} 
+
+.right-message {
+  background-color: var(--clr-primary);
+  color: #fff;
+}
+
+.rightSideBar {
+  flex: 2.5;
+}
+
+.chatMessageInput {
+  position: absolute;
+  bottom: 2px;
+  width: 100%;
+}
+
+@media screen and (425px <= width <= 768px) {
+  .rightSideBar{
+    display: none;
+  }
+}
+
+ @media screen and (max-width: 425px) {
+  .sidebar {
+    padding: 2rem;
+    background: #f7fafc;
+    flex: 1;
+  }
+  
+  .rightSideBar{
+    display: none;
+  }
+
+  .empty-chat{
+    display: none;
+  }
+}
