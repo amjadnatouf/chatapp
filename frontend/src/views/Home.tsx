@@ -1,6 +1,5 @@
 import LeftSideBar from "../components/LeftSideBar";
 import Chats from "../components/Chats";
-import RightSideBar from "../components/RightSideBar";
 import { useMediaQuery } from "@mantine/hooks";
 import { useStateMachine } from "little-state-machine";
 
@@ -22,7 +21,7 @@ const Home: React.FC = () => {
     <div className="homeContainer">
       <LeftSideBar />
       <Chats />
-      <RightSideBar />
+      {/* <RightSideBar /> */}
     </div>
   );
 };
