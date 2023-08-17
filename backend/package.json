@@ -6,8 +6,8 @@
   "author": "amjad natouf",
   "license": "MIT",
   "scripts": {
-    "test": "nodemon server.js",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "test": "node server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

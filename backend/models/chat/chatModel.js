@@ -2,27 +2,21 @@ const Chat = require("./chatSchema");
 const User = require("../users/userSchema");
 
 exports.createNewChat = async (req, res) => {
-  console.log(req.body);
   try {
     const senderId = req.body.senderId;
     let receiver;
 
     if (req.body.receiverId) {
-      console.log("first");
       receiver = await User.findById(req.body.receiverId);
     } else if (req.body.receiverEmail) {
-      console.log("second");
       receiver = await User.findOne({ email: req.body.receiverEmail });
     } else if (req.body.receiverUsername) {
-      console.log("third");
       receiver = await User.findOne({ username: req.body.receiverUsername });
     } else {
       return res.status(400).json({ message: "Receiver information missing." });
     }
 
     const sender = await User.findById(senderId);
-
-    console.log(receiver);
 
     if (!receiver) {
       return res.status(201).json({ message: "Receiver not found." });

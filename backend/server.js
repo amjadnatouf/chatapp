@@ -17,7 +17,6 @@ const startServer = async () => {
     await mongoose.connect(mongoURI);
     console.log("Connected to MongoDB");
   } catch (error) {
-    console.log("first");
     console.error("Error starting the server:", error);
   }
 };
