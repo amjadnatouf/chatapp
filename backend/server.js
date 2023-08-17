@@ -10,6 +10,7 @@ const serverURI = "http://localhost:" + PORT;
 const startServer = async () => {
   try {
     app.listen(PORT, () => console.log("Server listening at: " + serverURI));
+    mongoose.set("strictQuery", false);
     if (!mongoURI) {
       throw new Error("No environment variable found for MongoDB connection.");
     }
