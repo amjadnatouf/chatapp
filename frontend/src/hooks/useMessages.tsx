@@ -18,7 +18,7 @@ export const useMessage = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8080");
+    socket.current = io(import.meta.env.VITE_SOCKET_URL);
 
     socket.current.on("getMessage", (data) => {
       const tempMessage: Message = {
